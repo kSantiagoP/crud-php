@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'geometrianarrow';
+    src: url('../fonts/geometrianarrow-webfont.woff2') format('woff2'),
+         url('../fonts/geometrianarrow-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'geometrianarrow-light';
+    src: url('../fonts/geometrianarrow-light-webfont.woff2') format('woff2'),
+         url('../fonts/geometrianarrow-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'geometrianarrow-medium';
+    src: url('../fonts/geometrianarrow-medium-webfont.woff2') format('woff2'),
+         url('../fonts/geometrianarrow-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'geometrianarrow-bold';
+    src: url('../fonts/geometrianarrow-bold-webfont.woff2') format('woff2'),
+         url('../fonts/geometrianarrow-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

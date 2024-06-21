@@ -1,0 +1,112 @@
+body {
+    font-family: "geometrianarrow", serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    font-family: "geometrianarrow-medium", serif;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+div.AddEvent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.TituloAgenda{
+    text-align: center;
+}
+
+.EventForm {
+    display: inline-block; 
+    margin-bottom: 10px; 
+}
+
+form.AddEvent{
+    text-align: center;
+    width: 50%; 
+    max-width: 600px; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+}
+
+.EditForm {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin: 20px auto; 
+}
+
+
+input[type="text"], input[type="date"], textarea {
+    width: 300px;
+    padding: 5px;
+}
+
+.EditBtn, .ExcluirBtn, input.EditEvent {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #003D6D; 
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px; 
+}
+
+.EditBtn:hover, .ExcluirBtn:hover, input.EditEvent:hover {
+    background-color: #fafafa; 
+    color: #003D6D;
+    border-color: #003D6D;
+}
+
+
+input.AddEvent {
+    padding: 10px 15px;
+    background-color: #003D6D;
+    color: white;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+input.AddEvent:hover {
+    background-color: white;
+    color: #003D6D;
+    border-color: #003D6D;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
