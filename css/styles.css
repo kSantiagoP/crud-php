@@ -26,7 +26,7 @@ div.AddEvent{
     height: auto;
 }
 
-.TituloAgenda{
+.CalendarTitle{
     text-align: center;
 }
 
@@ -63,7 +63,7 @@ input[type="text"], input[type="date"], textarea {
     padding: 5px;
 }
 
-.EditBtn, .ExcluirBtn, input.EditEvent {
+.EditBtn, .ExcludeBtn, input.EditEvent {
     padding: 8px 16px;
     font-size: 14px;
     background-color: #003D6D; 
@@ -75,7 +75,7 @@ input[type="text"], input[type="date"], textarea {
     margin-right: 5px; 
 }
 
-.EditBtn:hover, .ExcluirBtn:hover, input.EditEvent:hover {
+.EditBtn:hover, .ExcludeBtn:hover, input.EditEvent:hover {
     background-color: #fafafa; 
     color: #003D6D;
     border-color: #003D6D;

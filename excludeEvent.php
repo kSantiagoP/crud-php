@@ -1,6 +1,6 @@
 <?php 
     require "./src/db-connection.php";
-    require "./src/Model/Evento.php";
+    require "./src/Model/Event.php";
     require "./src/Repository/EventRepository.php";
 
     $eventRepos = new EventRepository($pdo);

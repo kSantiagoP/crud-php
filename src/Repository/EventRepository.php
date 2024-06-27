@@ -1,6 +1,4 @@
-<?php 
-
-
+<?php
 class EventRepository
 {
     private PDO $pdo;    
@@ -10,52 +8,55 @@ class EventRepository
         $this->pdo = $pdo;
     }
 
-    public function getEventos(){
-      
+    //This one and pretty much every method implemented has try catch
+    //As the main source of error detection. That's not exactly scalable
+    //as it is but works on a small scale project such as this
+    public function getEvent(){
+
         try{
-            $query = "SELECT * FROM eventos ORDER BY `date`";
+            $query = "SELECT * FROM events ORDER BY `date`";
             $call = $this->pdo->query($query);
-            $eventos = $call->fetchAll(PDO::FETCH_ASSOC);
-            $dados = array_map(function ($evento){
-                return new Evento($evento['id'], 
-                                $evento['title'],
-                                $evento['date'], 
-                                $evento['description']);
-            }, $eventos);
-    
-            return $dados;
+            $events = $call->fetchAll(PDO::FETCH_ASSOC);
+            return array_map(function ($event){
+                return new Event($event['id'],
+                                $event['title'],
+                                $event['date'],
+                                $event['description']);
+            }, $events);
         }
         catch(Exception $e){
-            exit("Não foi possível resgatar os Eventos da agenda: ". $e->getMessage());
+            exit("Could not retrieve data from the database: ". $e->getMessage());
         }
 
     }
 
     public function deleteEvent(int $id){
         try{
-            $query = "DELETE FROM eventos WHERE id= ?";
+            //Preparing and binding values are done to prevent SQL injection
+            $query = "DELETE FROM events WHERE id= ?";
             $call = $this->pdo->prepare($query);
             $call->bindValue(1, $id);
             $call->execute();
         }
         catch(Exception $e){
-            exit("Não foi possível excluir dados do banco: ". $e->getMessage());
+            exit("Could not exclude data from database: ". $e->getMessage());
         }
 
 
     }
 
-    public function insertEvent(Evento $evento){
+    public function insertEvent(Event $event){
 
         try{
-            $query = "INSERT INTO eventos (`title`, `date`, `description`) VALUES (?,?,?)";
+            //Preparing and Binding values to prevent SQL injection
+            $query = "INSERT INTO events (`title`, `date`, `description`) VALUES (?,?,?)";
             $call = $this->pdo->prepare($query);
-            $call->bindValue(1, $evento->getTitle());
-            $call->bindValue(2, $evento->getDate());
-            $call->bindValue(3, $evento->getDescription());
+            $call->bindValue(1, $event->getTitle());
+            $call->bindValue(2, $event->getDate());
+            $call->bindValue(3, $event->getDescription());
             $call->execute();            
         }catch(Exception $e){
-            exit("Não foi possível inserir um novo evento na agenda: " . $e->getMessage());
+            exit("Could not insert data into the database: " . $e->getMessage());
         }
         
 
@@ -64,43 +65,35 @@ class EventRepository
     public function getEventById(int $id){
         
         try{
-            $query = "SELECT * FROM eventos WHERE id= ?";
-        
+            //Preparing and Binding values to prevent SQL injection
+            $query = "SELECT * FROM events WHERE id= ?";
             $call = $this->pdo->prepare($query);
             $call->bindValue(1, $id);
             $call->execute();
-    
-            $dados = $call->fetch(PDO::FETCH_ASSOC);
-    
-    
-            return new Evento($dados['id'],$dados['title'], $dados['date'], $dados['description']);
+            $data = $call->fetch(PDO::FETCH_ASSOC);
+
+            return new Event($data['id'],$data['title'], $data['date'], $data['description']);
         }catch(Exception $e){
-            exit("Não foi possível resgatar o evento a ser editado: " . $e->getMessage());
+            exit("Could not get data to be updated: " . $e->getMessage());
         }
 
     }
 
-    public function updateEvent(Evento $event){
+    public function updateEvent(Event $event){
         
         try{
-            $query = "UPDATE eventos SET `title` = ?, `date` = ?, `description` = ? WHERE id = ?";
-
+            //Preparing and Binding values to prevent SQL injection
+            $query = "UPDATE events SET `title` = ?, `date` = ?, `description` = ? WHERE id = ?";
             $call = $this->pdo->prepare($query);
             $call->bindValue(1, $event->getTitle());
             $call->bindValue(2, $event->getDate());
             $call->bindValue(3, $event->getDescription());
             $call->bindValue(4, $event->getId());
-    
             $call->execute();             
         }catch(Exception $e){
-            exit("Não foi possível editar o evento: " . $e->getMessage());
+            exit("Could not update data from the database: " . $e->getMessage());
         }
 
     }
 
 }
-
-
-
-
-?>
